@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryOnce</title>
+</head>
+<body>
+
+    <form id ="LoginForm" action="/action_page.php">
+        First Name:<input type="text" name="fname" value="Donald"><br>
+        Last Name:<input type ="text" name="lname" value="Trump"><br>
+    </form>
+    <p>click on "TRY IT" and see the magic</p>
+    <button onclick="myfunction()">TRY IT</button>
+    <p id="display"></p>
+    <script>
+        function myfunction(){
+            let x=document.getElementById("LoginForm").elements.length;
+            let y=document.getElementById("LoginForm").elements[0].value;
+            document.getElementById("display").innerHTML="Found "+x+" no of elements and first name is "+y;
+
+            //create method is used to craete new element
+            const para= document.createElement("p");
+            para.innerHTML="This text is generated through DOM!!";
+            document.body.appendChild(para);
+        }
+    </script>
+</body>
+</html>

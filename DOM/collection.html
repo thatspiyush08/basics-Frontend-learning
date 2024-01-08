@@ -1,0 +1,41 @@
+<!-- this is used to get the live output -->
+<!-- getElementById , getElementByClassName -->
+
+<!-- dynamic html content -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RemoveOnce</title>
+</head>
+<body>
+    <p id="removeit">This text can be removed on the click of the remove</p>
+    <p id ="par2">click on "REMOVE" to remove the text</p>
+    <button id="btn" onclick="myfunction()">REMOVE</button>
+    
+    <script>
+        function myfunction(){
+            
+            
+
+            
+            const para= document.getElementById("removeit");
+            const par=document.getElementById("par2");
+            const btn=document.getElementById("btn");
+            par.remove();
+            btn.remove();
+
+            para.remove();
+
+            const adde= document.createElement("p");
+            para.innerHTML="You have successfully removed the data!!";
+            document.body.appendChild(para);
+
+            
+        }
+    </script>
+</body>
+</html>

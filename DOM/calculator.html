@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <script>
+        function summing(){
+            const a=document.getElementById("one").value;
+            const b=document.getElementById("two").value;
+            const c=document.getElementById("sum");
+
+            c.innerHTML=`The Sum is ${parseInt(a)+parseInt(b)}`;
+        }
+    </script>
+
+    <input type="" id="one" placeholder="first number">
+    <input type="text"  id="two" placeholder="second number"><br>
+    <br>
+    <button onclick="summing()"> Calculate Sum</button>
+    <br>
+    <br>
+    <div id="sum"></div>
+</body>
+</html>

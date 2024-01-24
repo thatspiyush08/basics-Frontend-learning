@@ -1,13 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-
-import todo from './assets/todo.png'
-import './App.css'
+import React, { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import Todo from './assets/todo.png';
+import './App.css';
 
 function App() {
-  const [todo, settodo] = useState([{
-    
-  }])
+  const [todo, settodo] = useState([
+    {
+      title: 'Go to GYM',
+      description: 'From 12am-1am',
+    },
+    {
+      title: 'Do Front-End',
+      description: 'From 1am-3am',
+    },
+    {
+      title: 'Sleep',
+      description: 'From 3am-11am',
+    },
+  ]);
 
   return (
     <>
@@ -16,27 +26,56 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
         <a href="https://react.dev" target="_blank">
-          <img src={todo} className="todo logo" alt="todo logo" />
+          <img src={Todo} className="todo logo" alt="todo logo" />
         </a>
       </div>
       <h1>To Do Application</h1>
       <div className="card">
-        <CustomButton count={count} setCount={setCount}></CustomButton>
+        <CustomButton todo={todo} settodo={settodo}></CustomButton>
       </div>
 
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        Click on the button to Add Random TODO's.
       </p>
     </>
-  )
+  );
 }
 
-function CustomButton(props){
-  function addtodo(){
-    props.setCount(props.count+1);
+function CustomButton(props) {
+  function addtodo() {
+    props.settodo((prevTodo) => [
+      ...prevTodo,
+      {
+        title: 'Random Todo',
+        description: 'Random Description',
+      },
+    ]);
   }
-  return <button onClick={addtodo}>Counter: {props.count}</button>
 
+  return (
+    <div>
+      <button onClick={addtodo}>Add Todos</button>
+      {props.todo.map(function (todos, index) {
+        return (
+          <TODOS
+            key={index}
+            title={todos.title}
+            description={todos.description}
+          ></TODOS>
+        );
+      })}
+    </div>
+  );
+};
+
+function TODOS(props) {
+  return (
+    <div>
+      <h2>{props.title}</h2>
+      <p>{props.description}</p>
+    </div>
+  );
 }
 
-export default App
+export default App;
+

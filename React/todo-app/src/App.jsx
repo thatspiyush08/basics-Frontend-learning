@@ -19,6 +19,33 @@ function App() {
     },
   ]);
 
+  const [newTodo, setNewTodo] = useState({
+    title: '',
+    description: '',
+  });
+
+  function addTodo() {
+    if (newTodo.title && newTodo.description) {
+      settodo((prevTodo) => [...prevTodo, newTodo]);
+      setNewTodo({
+        title: '',
+        description: '',
+      });
+    }
+  }
+
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setNewTodo((prevTodo) => ({
+      ...prevTodo,
+      [name]: value,
+    }));
+  }
+
+  function removeTodo(index) {
+    settodo((prevTodo) => prevTodo.filter((_, i) => i !== index));
+  }
+
   return (
     <>
       <div>
@@ -31,7 +58,36 @@ function App() {
       </div>
       <h1>To Do Application</h1>
       <div className="card">
-        <CustomButton todo={todo} settodo={settodo}></CustomButton>
+        <div>
+          <input
+            type="text"
+            name="title"
+            value={newTodo.title}
+            onChange={handleInputChange}
+            placeholder="Enter Todo Name"
+            className="input-box"
+          />
+          <input
+            type="text"
+            name="description"
+            value={newTodo.description}
+            onChange={handleInputChange}
+            placeholder="Enter Todo Description"
+            className="input-box"
+          />
+          <button onClick={addTodo} className="add-button">Add Todo</button>
+        </div>
+        {todo.map(function (todos, index) {
+          return (
+            <div key={index}>
+              <TODOS
+                title={todos.title}
+                description={todos.description}
+              ></TODOS>
+              <button onClick={() => removeTodo(index)}>Completed</button>
+            </div>
+          );
+        })}
       </div>
 
       <p className="read-the-docs">
@@ -40,33 +96,6 @@ function App() {
     </>
   );
 }
-
-function CustomButton(props) {
-  function addtodo() {
-    props.settodo((prevTodo) => [
-      ...prevTodo,
-      {
-        title: 'Random Todo',
-        description: 'Random Description',
-      },
-    ]);
-  }
-
-  return (
-    <div>
-      <button onClick={addtodo}>Add Todos</button>
-      {props.todo.map(function (todos, index) {
-        return (
-          <TODOS
-            key={index}
-            title={todos.title}
-            description={todos.description}
-          ></TODOS>
-        );
-      })}
-    </div>
-  );
-};
 
 function TODOS(props) {
   return (
@@ -78,4 +107,3 @@ function TODOS(props) {
 }
 
 export default App;
-
